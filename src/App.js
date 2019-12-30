@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import './App.css';
 // import { login } from './redux/action';
 import Home from '../src/pages/home'
@@ -17,7 +17,7 @@ class App extends Component {
   // }
 
   render() {
-    const { show } = this.props
+    // const { show } = this.props
     return (
       <div className="App">
         {

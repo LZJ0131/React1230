@@ -1,7 +1,7 @@
 import  type  from '../actionType'
 
 const initialState = {
-  login_status: 'lizini'
+  title:'记录'
 }
 
 const Data = (state = initialState, action) => {
