@@ -4,6 +4,7 @@ import App from './App'
 import Home from './pages/home';
 import Login from './pages/login';
 
+import Admin from './admin'
 
 class BasicRoute extends Component {
   constructor(props) {
@@ -16,13 +17,14 @@ class BasicRoute extends Component {
         <App>
           <Switch>
             <Route path='/login' component={Login}></Route>
-            <Route path='/'>
+            <Route path='/admin'>
               <Switch>
-                <Route path='/ui/home' exact component={Home}></Route>
-                <Redirect to='/ui/home'></Redirect>
+                <Admin>
+                  <Route path='/admin/home' exact component={Home}></Route>
+                </Admin>
               </Switch>
             </Route>
-
+            <Redirect to='/login'></Redirect>
           </Switch>
         </App>
       </Router>

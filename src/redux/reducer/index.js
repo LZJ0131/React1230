@@ -1,7 +1,11 @@
 import  type  from '../actionType'
 
 const initialState = {
-  title:'记录'
+  title:'记录',
+  userinfo:{
+    username:'',
+    password:''
+  }
 }
 
 const Data = (state = initialState, action) => {
@@ -9,7 +13,7 @@ const Data = (state = initialState, action) => {
     case type.LOGIN_STATUS:
       return {
         ...state,
-        login_status: action.Login
+        userinfo: action.userinfo
       }
     default:
       return { ...state };

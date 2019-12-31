@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
-// import { connect } from 'react-redux'
 import './App.css';
-// import { login } from './redux/action';
+
 
 
 class App extends Component {

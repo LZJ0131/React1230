@@ -1,14 +1,11 @@
 body {
   margin: 0;
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Microsoft Yahei","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    line-height: 20px;
-    color: #555;
+  font-family: "PingFang SC", Helvetica, "Helvetica Neue",Arial, "Microsoft YaHei", "SimSun", Tahoma, sans-serif;
+  font-size: 14px;
+  color: #555;
+  min-height: 100vh;
 }
 
 code {
@@ -17,8 +14,22 @@ code {
 }
 
 
-ul,li{
+ul,
+li {
   padding: 0;
   margin: 0;
   list-style: none;
+}
+input::-webkit-input-placeholder{
+  font-size: 14px;
+  color: #999999;
+}
+input,button{
+  outline: none;
+  border: 0;
+  background-color: #ffffff;
+  font-family: "PingFang SC", Helvetica, "Helvetica Neue",Arial, "Microsoft YaHei", "SimSun", Tahoma, sans-serif;
+}
+button{
+  cursor: pointer;
 }
