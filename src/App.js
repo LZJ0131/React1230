@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 // import { connect } from 'react-redux'
 import './App.css';
 // import { login } from './redux/action';
-import Home from '../src/pages/home'
 
 
 class App extends Component {
@@ -19,12 +18,9 @@ class App extends Component {
   render() {
     // const { show } = this.props
     return (
-      <div className="App">
-        {
-          /*<button onClick={this.reg}>{show}</button>*/
-        }
-        <Home></Home>
-      </div>
+      <Fragment>
+        {this.props.children}
+      </Fragment>
     );
   }
 
