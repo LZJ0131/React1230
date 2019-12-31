@@ -1,0 +1,35 @@
+
+
+.layout-right {
+  float: left;
+  width: 84%;
+  margin: 0 1%;
+  min-height: 800px;
+}
+
+
+.layout-righttop-left{
+  float: left;
+}
+.layout-righttop-left li{
+  position: relative;
+  float: left;
+  cursor: pointer;
+}
+.layout-righttop-left>li+li{
+  margin-left: 20px;
+}
+.layout-righttop-left>li+li::before{
+  position: absolute;
+  top:-2px ;
+  left: -15px;
+  content:'>';
+  font-size: 20px;
+  cursor: default;
+}
+.layout-rightswitch{
+  width: 100%;
+  height: 47px;
+  background-color: #ffffff;
+  border-radius: 4px;
+}

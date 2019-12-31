@@ -1,17 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
+
+import './index.css'
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {  }
+    this.state = {}
   }
-  render() { 
-    return ( 
-      <div className='header' id='header'>
-        李子嘉
-      </div>
-     );
+  render() {
+    return (
+      <Fragment>
+
+        <div className='layout-rightswitch'>
+          <ul className='layout-rightswitch-left'>
+            
+          </ul>
+        </div>
+      </Fragment>
+    );
   }
 }
- 
+
 export default Home;

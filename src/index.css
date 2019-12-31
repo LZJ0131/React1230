@@ -2,7 +2,7 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "PingFang SC", Helvetica, "Helvetica Neue",Arial, "Microsoft YaHei", "SimSun", Tahoma, sans-serif;
+  font-family: "PingFang SC", Helvetica, "Helvetica Neue", Arial, "Microsoft YaHei", "SimSun", Tahoma, sans-serif;
   font-size: 14px;
   color: #555;
   min-height: 100vh;
@@ -13,6 +13,9 @@ code {
     monospace;
 }
 
+* {
+  box-sizing: border-box;
+}
 
 ul,
 li {
@@ -20,16 +23,32 @@ li {
   margin: 0;
   list-style: none;
 }
-input::-webkit-input-placeholder{
+
+input::-webkit-input-placeholder {
   font-size: 14px;
   color: #999999;
 }
-input,button{
+
+input,
+button {
   outline: none;
   border: 0;
   background-color: #ffffff;
-  font-family: "PingFang SC", Helvetica, "Helvetica Neue",Arial, "Microsoft YaHei", "SimSun", Tahoma, sans-serif;
+  font-family: "PingFang SC", Helvetica, "Helvetica Neue", Arial, "Microsoft YaHei", "SimSun", Tahoma, sans-serif;
 }
-button{
+
+button {
   cursor: pointer;
+}
+
+.clearfix::after {
+  display: block;
+  content: '';
+  clear: both;
+  overflow: hidden;
+}
+
+a{
+  text-decoration: none;
+  color: initial;
 }
