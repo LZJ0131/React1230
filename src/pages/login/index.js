@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux'
-
+import { withRouter } from 'react-router-dom';
 import Header from '../../components/header'
 import Bottom from '../../components/bottom'
 import './index.css'
@@ -53,6 +53,16 @@ class Login extends Component {
       </div>
     );
   }
+
+  componentDidMount(){
+    var session=window.sessionStorage;
+    var userinfo=session.getItem('userinfo',this.state.userinfo);
+    if(userinfo){
+      this.props.logindispatch(JSON.parse(userinfo))
+      this.props.history.replace('/admin/home')
+    }
+  }
+
   // 监听username
   handleUsername(event) {
     var obj = Object.assign({}, this.state.userinfo, { username: event.target.value })
@@ -74,6 +84,8 @@ class Login extends Component {
         loginflag: true
       })
       this.props.logindispatch(this.state.userinfo)
+      var session=window.sessionStorage;
+      session.setItem('userinfo',JSON.stringify(this.state.userinfo))
       this.props.history.push('/admin/home')
     } else {
       console.log('稍等!')
@@ -85,10 +97,11 @@ function mapStateToProps(state) {
     
   }
 }
+
 function mapDispatchToProps(dispatch) {
   return {
     logindispatch: (userinfo) => { dispatch(login(userinfo)) }
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Login));

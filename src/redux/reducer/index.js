@@ -1,7 +1,6 @@
 import  type  from '../actionType'
 
 const initialState = {
-  title:'记录',
   userinfo:{
     username:'',
     password:''

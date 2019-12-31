@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+
 import App from './App'
 import Home from './pages/home';
 import Login from './pages/login';
@@ -28,7 +29,6 @@ class BasicRoute extends Component {
           </Switch>
         </App>
       </Router>
-
     );
   }
 }
