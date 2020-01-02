@@ -9,14 +9,11 @@ class Home extends Component {
   }
   render() {
     return (
-      <Fragment>
+      <div className='HomeBox'>
+        
 
-        <div className='layout-rightswitch'>
-          <ul className='layout-rightswitch-left'>
-            
-          </ul>
-        </div>
-      </Fragment>
+      </div>
+
     );
   }
 }

@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './index.css'
 
+
+
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.exit=this.exit.bind(this)
+    this.exit = this.exit.bind(this)
   }
   render() {
     let userlogin;
@@ -22,17 +24,19 @@ class Header extends Component {
 
     return (
       <div className='layout-header'>
-        <div className='layout-headerbox'>
-          <div className='layout-logo'></div>
-          {userlogin}
-        </div>
+          <div className='layout-headerbox'>
+            <div className='layout-logo'></div>
+            {userlogin}
+          </div>
+
+        
       </div>
     );
   }
 
 
-  exit(){
-    var session=window.sessionStorage;
+  exit() {
+    var session = window.sessionStorage;
     session.clear();
     window.location.reload()
   }

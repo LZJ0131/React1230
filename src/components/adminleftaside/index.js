@@ -1,19 +1,23 @@
+import './index.css'
+
 import React, { Component } from 'react';
 
-import './index.css'
+
 
 class LeftAside extends Component {
   constructor(props) {
     super(props);
     this.state = {}
   }
-
+  handleClick = e => {
+    console.log('click ', e);
+  };
   render() {
     return (
       <aside className='layout-left'>
-        <ul>
-          <li className='active'>基本数据</li>
-        </ul>
+         <ul>
+          <li></li>
+         </ul>
       </aside>
     );
   }

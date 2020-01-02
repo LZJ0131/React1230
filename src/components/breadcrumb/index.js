@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './index.css'
 
+import { Breadcrumb } from 'antd';
+
 class BreadCrumb extends Component {
   constructor(props) {
     super(props);
@@ -10,12 +12,9 @@ class BreadCrumb extends Component {
   }
   render() {
     return (
-      <div className='layout-righttop'>
-        <ul className='layout-righttop-left'>
-          <li>教师管理</li>
-          <li><Link to='/login'>教师管理</Link></li>
-        </ul>
-      </div>
+      <Breadcrumb className='layout-righttop'>
+        <Breadcrumb.Item>首页</Breadcrumb.Item>
+      </Breadcrumb>
     );
   }
 }

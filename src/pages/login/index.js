@@ -5,8 +5,11 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 import Header from '../../components/header'
 import Bottom from '../../components/bottom'
+import Register from '../../components/register'
 import './index.css'
 
+import { Icon, message, Spin } from 'antd';
+// redux
 import { login, settoken } from '../../redux/action/index'
 
 class Login extends Component {
@@ -17,47 +20,55 @@ class Login extends Component {
       userinfo: {
         username: '',
         password: ''
-      }
+      },
+      loading: false,
+      regshow:false
     }
     this.loginsubmit = this.loginsubmit.bind(this)
     this.handleUsername = this.handleUsername.bind(this)
     this.handlePassword = this.handlePassword.bind(this)
+    this.register = this.register.bind(this)
   }
   render() {
     return (
       <div className='loginwrap'>
         <Header></Header>
         <div className='layout-loginbox'>
-          <div className='layout-title'>登录</div>
-          <div className='layout-form'>
-            <div className='layout-formele'>
-              <input placeholder='请输入用户名' value={this.state.userinfo.username} onChange={this.handleUsername} />
+          <Spin tip="登录中..." spinning={this.state.loading}>
+            <div className='layout-title'>系统登录</div>
+            <div className='layout-form'>
+              <div className='layout-formele'>
+                <span><Icon type="user" style={{ color: '#999' }} /></span>
+                <input placeholder='请输入用户名' value={this.state.userinfo.username} onChange={this.handleUsername} />
+              </div>
+              <div className='layout-formele'>
+                <span><Icon type="lock" style={{ color: '#999' }} /></span>
+                <input placeholder='请输入密码' type='password' value={this.state.userinfo.password} onChange={this.handlePassword} />
+              </div>
+              <div className='layout-formbtn'>
+                <button onClick={this.loginsubmit}>登录</button>
+              </div>
+              <div className='layout-forget'>
+                <span>找回密码</span>
+                <span onClick={this.register}>注册账号</span>
+              </div>
+              <div className='layout-tip'>
+              </div>
             </div>
-            <div className='layout-formele'>
-              <input placeholder='请输入密码' type='password' value={this.state.userinfo.password} onChange={this.handlePassword} />
-            </div>
-            <div className='layout-formbtn'>
-              <button onClick={this.loginsubmit}>登录</button>
-            </div>
-            <div className='layout-forget'>
-              <span>找回密码</span>
-            </div>
-            <div className='layout-tip'>
-              本平台推荐使用IE10及以上版本、火狐、谷歌、360浏览器
-            </div>
-          </div>
+          </Spin>
         </div>
         <Bottom></Bottom>
+        <Register regshow={this.state.regshow} callback={this.callback} ></Register>
       </div>
     );
   }
 
 
-  componentWillMount(){
+  componentWillMount() {
     // 判断是否已经登录
-    if(this.props.token){
+    if (this.props.token) {
       this.props.history.push('/admin')
-    }else{
+    } else {
       return
     }
   }
@@ -77,22 +88,48 @@ class Login extends Component {
   }
   // 登录按钮
   loginsubmit() {
+    if (this.state.userinfo.username !== 'admin') {
+      message.error('用户名错误');
+      return;
+    }
+    if (this.state.userinfo.password !== 'admin') {
+      message.error('密码错误');
+      return;
+    }
     if (!this.state.loginflag) {
+      this.setState({
+        loading:true
+      })
       var token = uuid();
       var session = window.sessionStorage;
       this.props.logindispatch(this.state.userinfo)
       this.props.settoken(token)
       session.setItem('userinfo', JSON.stringify(this.state.userinfo))
       session.setItem('token', token);
+      this.setState({
+        loading:false
+      })
+      message.success('登录成功');
       // 跳转页面
-      if(this.props.location.state){
+      if (this.props.location.state) {
         this.props.history.push(this.props.location.state.from)
-      }else{
+      } else {
         this.props.history.push('/admin')
       }
     } else {
-      console.log('稍等!')
+      message.error('登录中');
     }
+  }
+  // 注册
+  register(){
+    this.setState({
+      regshow:true
+    })
+  }
+  callback=(visible)=>{
+    this.setState({
+      regshow:visible
+    })
   }
 }
 // 生成token
@@ -113,7 +150,7 @@ function uuid() {
 
 function mapStateToProps(state) {
   return {
-    token:state.token
+    token: state.token
   }
 }
 
