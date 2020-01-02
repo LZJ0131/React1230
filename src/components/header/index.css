@@ -6,4 +6,5 @@
   height: 70px;
   line-height: 70px;
   background: #222;
+  z-index: 999;
 }

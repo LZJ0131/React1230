@@ -8,3 +8,9 @@ export function login(userinfo){
     userinfo
   }
 }
+export function settoken(token){
+  return {
+    type:type.SET_TOKEN,
+    token
+  }
+}

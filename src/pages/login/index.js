@@ -7,9 +7,7 @@ import Header from '../../components/header'
 import Bottom from '../../components/bottom'
 import './index.css'
 
-
-import { login } from '../../redux/action/index'
-
+import { login, settoken } from '../../redux/action/index'
 
 class Login extends Component {
   constructor(props) {
@@ -54,15 +52,6 @@ class Login extends Component {
     );
   }
 
-  componentDidMount(){
-    var session=window.sessionStorage;
-    var userinfo=session.getItem('userinfo',this.state.userinfo);
-    if(userinfo){
-      this.props.logindispatch(JSON.parse(userinfo))
-      this.props.history.replace('/admin/home')
-    }
-  }
-
   // 监听username
   handleUsername(event) {
     var obj = Object.assign({}, this.state.userinfo, { username: event.target.value })
@@ -77,31 +66,53 @@ class Login extends Component {
       userinfo: obj
     })
   }
+
   // 登录按钮
   loginsubmit() {
     if (!this.state.loginflag) {
-      this.setState({
-        loginflag: true
-      })
+      var token = uuid();
+      var session = window.sessionStorage;
       this.props.logindispatch(this.state.userinfo)
-      var session=window.sessionStorage;
-      session.setItem('userinfo',JSON.stringify(this.state.userinfo))
-      this.props.history.push('/admin/home')
+      this.props.settoken(token)
+      session.setItem('userinfo', JSON.stringify(this.state.userinfo))
+      session.setItem('token', token);
+      // 跳转页面
+      if(this.props.location.state){
+        this.props.history.push(this.props.location.state.from)
+      }else{
+        this.props.history.push('/admin')
+      }
     } else {
       console.log('稍等!')
     }
   }
 }
+// 生成token
+function uuid() {
+  var s = [];
+  var hexDigits = "0123456789abcdef";
+  for (var i = 0; i < 36; i++) {
+    s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+  }
+  s[14] = "4"; // bits 12-15 of the time_hi_and_version field to 0010
+  s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1); // bits 6-7 of the clock_seq_hi_and_reserved to 01
+  s[8] = s[13] = s[18] = s[23] = "-";
+
+  var uuid = s.join("");
+  return uuid;
+}
+
 function mapStateToProps(state) {
   return {
-    
+
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    logindispatch: (userinfo) => { dispatch(login(userinfo)) }
+    logindispatch: (userinfo) => { dispatch(login(userinfo)) },
+    settoken: (token) => { dispatch(settoken(token)) }
   }
 }
 
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Login));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
