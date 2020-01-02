@@ -35,7 +35,10 @@ class BasicRoute extends Component {
                 <Route component={NotFound} />
               </Switch>
             </Route>
-            <Route component={NotFound} />
+            <Route render={() => (
+              token ? <Route component={NotFound} /> : <Redirect to='/login'/>
+            )}>
+            </Route>
           </Switch>
         </App>
       </Router>

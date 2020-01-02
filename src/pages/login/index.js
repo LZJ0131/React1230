@@ -52,6 +52,15 @@ class Login extends Component {
     );
   }
 
+
+  componentWillMount(){
+    // 判断是否已经登录
+    if(this.props.token){
+      this.props.history.push('/admin')
+    }else{
+      return
+    }
+  }
   // 监听username
   handleUsername(event) {
     var obj = Object.assign({}, this.state.userinfo, { username: event.target.value })
@@ -66,7 +75,6 @@ class Login extends Component {
       userinfo: obj
     })
   }
-
   // 登录按钮
   loginsubmit() {
     if (!this.state.loginflag) {
@@ -102,9 +110,10 @@ function uuid() {
   return uuid;
 }
 
+
 function mapStateToProps(state) {
   return {
-
+    token:state.token
   }
 }
 
